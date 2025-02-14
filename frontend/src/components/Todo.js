@@ -14,7 +14,7 @@ function Todo() {
 
     // Fetch tasks from database
     useEffect(() => {
-        axios.get('http://192.168.1.200:3001/getTodoList')
+        axios.get('localhost:3001/getTodoList')
             .then(result => {
                 setTodoList(result.data)
             })
@@ -46,7 +46,7 @@ function Todo() {
             return;
         }
 
-        axios.post('http://192.168.1.200:3001/addTodoList', { task: newTask, status: newStatus, deadline: newDeadline })
+        axios.post('localhost:3001/addTodoList', { task: newTask, status: newStatus, deadline: newDeadline })
             .then(res => {
                 console.log(res);
                 window.location.reload();
@@ -69,7 +69,7 @@ function Todo() {
         }
 
         // Updating edited data to the database through updateById API
-        axios.put('http://192.168.1.200:3001/updateTodoList/' + id, editedData)
+        axios.put('localhost:3001/updateTodoList/' + id, editedData)
             .then(result => {
                 console.log(result);
                 setEditableId(null);
@@ -84,7 +84,7 @@ function Todo() {
 
     // Delete task from database
     const deleteTask = (id) => {
-        axios.delete('http://192.168.1.200:3001/deleteTodoList/' + id)
+        axios.delete('localhost:3001/deleteTodoList/' + id)
             .then(result => {
                 console.log(result);
                 window.location.reload();
